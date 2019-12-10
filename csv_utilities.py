@@ -19,8 +19,8 @@ parser.add_argument('-t', '--time', action='store_true', help="""Prints out the 
                     the first two columns selected""")
 parser.add_argument('-g', '--generate', action='store_true', help="""Generates a csv file with the given filename.
                     Default number of data columns is 1 and default number of rows is 2000.""")
-parser.add_argument('--colNum', type=int, nargs=1, help='Number of columns to generate')
-parser.add_argument('--rowNum', type=int, nargs=1, help='Number of rows to generate')
+parser.add_argument('--colNum', type=int, help='Number of columns to generate')
+parser.add_argument('--rowNum', type=int, help='Number of rows to generate')
 
 args = parser.parse_args()
 
@@ -40,11 +40,11 @@ with open(args.file, 'w+') as csv_file:
     
     for j in range(0, rowNum):
       values = list()
-      values.append(date.isoformat)
+      values.append(date.isoformat())
       for i in range(0, colNum):
-        values.append(str(i))
+        values.append(str(j))
       writer.writerow(values)
-      date = date + timedelta(seconds=1)
+      date = date + timedelta(microseconds=1)
     
   else:
     csv_reader = csv.reader(csv_file)
